@@ -1,0 +1,28 @@
+{
+  "name": "Automata",
+  "version": "0.0.0",
+  "description": "Cadaver exquisito, #publicaciones #independientes, #",
+  "main": "bin/www",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hi-neron/Automata.git"
+  },
+  "keywords": [
+    "cadaver",
+    "exquisito",
+    "unicauca",
+    "dieño",
+    "gráfico"
+  ],
+  "author": "Hi-Neron",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hi-neron/Automata/issues"
+  },
+  "dependencies": {
+    "express": "~4.13.4"
+  }
+}
