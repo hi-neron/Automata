@@ -1,5 +1,6 @@
 'use strict'
 const fs = require('fs-extra')
+const jsonfile = require('jsonfile')
 const path = require('path')
 const corpsePieces = require('../db').CorpsePiece
 
@@ -11,14 +12,22 @@ class Matrix {
     this.template = []
   }
 
+  makeFile (cb) {
+    this.grid = {'grid': this.template}
+    jsonfile.writeFile(this.pathFile, this.grid, {'spaces': 2}, (err) => {
+      if (err) return cb('No se puede crear el archivo')
+      cb(null, this.grid)
+    })
+  }
+
   buildGrid (cb) {
     // si el backup de matriz principal, no existe, se lo crea.
     fs.ensureFile(this.pathFile, (err) => {
       if (err) return cb(err, null)
       // lee el archivo backup que contiene la matriz principal
-      fs.readJson(this.pathFile, (err, matriz) => {
+      jsonfile.readFile(this.pathFile, (err, matriz) => {
         // Si los datos en el archivo no se pueden leer, se crea otro
-        if (err || !matriz || !matriz.grid.length) {
+        if (err || !matriz) {
           corpsePieces.find({}, (err, data) => {
             if (err) return cb(err, null)
             let dimension = 3
@@ -28,14 +37,21 @@ class Matrix {
               dimension = dimension + 2
             }
 
+            // Se construye la rejilla
             for (let y = Math.round((dimension / 2) * -1); y < dimension / 2; y++) {
               for (let x = Math.round((dimension / 2) * -1); x < dimension / 2; x++) {
-                this.template.push({'pos': [x, y], 'piece': 'none'})
+                this.template.push({'pos': [x, y], 'piece': null})
               }
             }
-            cb(null, this.template)
+
+            // Se crear el archivo backup
+            this.makeFile((err, grid) => {
+              if (err) return cb(err)
+              cb(null, grid)
+            })
           })
         } else {
+          // si el archivo backup existe, lo devuelve
           cb(null, matriz)
         }
       })

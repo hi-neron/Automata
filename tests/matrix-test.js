@@ -14,7 +14,7 @@ test('return a matrix', (t) => {
       if (err) console.log(err)
       console.log(res.body)
       t.equal(typeof res.body, 'object', 'should be an array')
-      t.equal(res.body.length, 9, 'should be an intial size nine')
+      t.equal(res.body.grid.length, 9, 'should be an intial size nine')
       t.ok(res.body.grid, 'should have an item named grid')
       start.close()
       mongoose.connection.close()

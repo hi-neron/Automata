@@ -3,17 +3,17 @@
 
 ###Diseñador
 > DESIGNER
-> name: String, Required
-> avatar: String
+name: String, Required
+avatar: String
 
 - El diseñador es el que creara las piezas y las subira, no pueden exisitr piezas sin autor.
 
 ###Piezas de cadaver
 > CORPSE_PIECE
-> ID: ObjectID
-> DESIGNER: ref: Designer
-> URL: String, Required
-> NAME: String, Required
+ID: ObjectID
+DESIGNER: ref: Designer
+URL: String, Required
+NAME: String, Required
 
 ###Matriz
 | -1/1 | 0/1 | 1/1 |
@@ -21,6 +21,9 @@
 | -1/0 | 0/0 | 1/0 |
 | -1/-1 | 0/-1 | 1/-1 |
 
+------
+
+##License
 
 The MIT License (MIT)
 Copyright (c) 2016, Jose Sánchez
