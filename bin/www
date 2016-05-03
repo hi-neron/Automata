@@ -1,13 +1,21 @@
 "use strict"
 
-const http = require("http")
-const app = require("../app.js")
+const http = require('http')
+const app = require('../app.js')
+
 const port = process.env.PORT || 3000
 const server = http.createServer(app)
 
+const name = 'Automata'
+const chalk = require('chalk')
+
+
 server.listen(port)
-server.on("listening", function (){
-  console.log(`server listening on port: ${port}`)
+var io = require('socket.io')(server)
+require('../sockets')(io)
+
+server.on('listening', function (){
+  console.log(chalk.black.bgYellow(`server listening on port: ${port}`))
 })
 
 server.on('error', onError )

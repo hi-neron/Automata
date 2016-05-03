@@ -1,0 +1,27 @@
+#gridContainer{
+  position: relative;
+  width: 100%;
+  background-color: #F0F0F0;
+  overflow: hidden;
+
+  .grid{
+    background-color: #F0F0F0;
+    width: 20px;
+    width: auto;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 0px 10px rgba(black, 0.1);
+    transform: translate(-50%, -50%);
+  }
+
+  .corpsePiece {
+    border: 1px solid #ECECEC;
+    position: absolute;
+    display: block;
+    width: 360px;
+    height: 360px;
+    text-align: center;
+  }
+}

@@ -21,3 +21,11 @@ test('return a matrix', (t) => {
       t.end()
     })
 })
+
+// test('Should move a matrix on realtime', (t) => {
+//   let socket = io.connect(socketURL, options)
+//   socket.on('connect', (data) => {
+//     socket.emit('move', 'hola')
+//   })
+//   t.end()
+// })

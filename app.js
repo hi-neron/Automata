@@ -4,10 +4,15 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-
-const matrixRoutes = require('./routes/matrix.js')
-
 const path = require('path')
+
+const matrixRoutes = require('./routes/matrix')
+
+// app.use((req, res, next) => {
+//   req.auth = true
+//   console.log(`door is open? ${req.auth}`)
+//   next()
+// })
 
 app.use('/grid', matrixRoutes)
 

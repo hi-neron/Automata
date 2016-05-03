@@ -38,9 +38,9 @@ class Matrix {
             }
 
             // Se construye la rejilla
-            for (let y = Math.round((dimension / 2) * -1); y < dimension / 2; y++) {
+            for (let y = Math.floor(dimension / 2); y >= (dimension / 2) * -1; y--) {
               for (let x = Math.round((dimension / 2) * -1); x < dimension / 2; x++) {
-                this.template.push({'pos': [x, y], 'piece': null})
+                this.template.push({'pos': `${x}/${y}`, 'direction': '0', 'id': null})
               }
             }
 
@@ -57,7 +57,7 @@ class Matrix {
       })
     })
   }
-
+  // Devuelve un main grid, si no existe lo construye
   getMainGrid (cb) {
     if (!this.grid) {
       this.buildGrid((err, grid) => {

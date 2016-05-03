@@ -1,0 +1,15 @@
+@import 'reset';
+@import 'header';
+@import 'matrix';
+// include brand
+
+$orange: #FC9E2B;
+$purple: #2B1840;
+$white: #FAFAFA;
+
+body {
+  background-color: #C5C5C5;
+  color: $purple;
+  font-family: 'helvetica';
+  font-size: 20px;
+}
