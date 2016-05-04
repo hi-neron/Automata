@@ -15,6 +15,8 @@ var template = `
 
 function renderGrid(grid) {
   let dimension = Math.sqrt(grid.grid.length)
+  let $grid = $gridContainer.find('.grid')
+  let $blankSpace = $gridContainer.find('.blankSpace')
   let size = 400
   let x = 0
   let y = 0
@@ -26,7 +28,6 @@ function renderGrid(grid) {
     .replace('{{pos}}', piece.pos)
 
     let $item = $(item)
-    let $grid = $gridContainer.find('.grid')
 
     $item.css({
       width: size,
@@ -44,17 +45,30 @@ function renderGrid(grid) {
       bucle = 0
     }
 
+    $grid.append($item)
+  })
+    // center in the viewport
+    let h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+
     $gridContainer.css({
-      height: size * (dimension + 1)
+      height: h
+    })
+
+    let hGrid = size * dimension
+    let wGrid = size * dimension
+
+    $blankSpace.css({
+      height: hGrid + size,
+      width: wGrid + size
     })
 
     $grid.css({
-      height: size * dimension,
-      width: size * dimension
+      height: hGrid,
+      width: wGrid
     })
 
-    $grid.append($item)
-  })
+    // $gridContainer.scrollTop( 500 )
+    // $gridContainer.scrollLeft( 500 )
 }
 
 module.exports = renderGrid
