@@ -2,11 +2,12 @@
 
 const express = require('express')
 const router = express.Router()
-const gridServer = require('../../matrixes/matrix.js')
+const matrix = require('../../matrixes/matrix.js')
 
-router.get('/', (req, res, next) => {
-  gridServer.getMainGrid((err, grid) => {
+router.get('/:matrixName?', (req, res, next) => {
+  matrix.mainMatrix.getMainGrid((err, grid) => {
     if (err) return res.json({'error': err})
+    console.log('llego a la ruta matrix')
     res.json(grid)
   })
 })

@@ -5,6 +5,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const path = require('path')
+const matrix = require('./matrixes/matrix.js').mainMatrix
 
 const matrixRoutes = require('./routes/matrix')
 

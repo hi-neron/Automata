@@ -8,6 +8,8 @@ var moveY = 0
 var move = false
 var canAnimate = false
 
+// Childs calls
+require('../grid')
 
 $(window).load(function() {
   setTimeout(() => {
