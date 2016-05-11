@@ -7,11 +7,10 @@
     "lint": "standard",
     "test": "npm run lint && tape tests/*-test.js | tap-spec",
     "sync": "browser-sync start --proxy 'localhost:3000' --files 'public'",
-    "develop": "npm run sync & nodemon bin/www",
-    "watch": "watchify src/main.js -o public/js/bundle.js",
-    "scss": "scss --watch src/scss:public/css",
     "cpx": "cpx 'src/*.html' public -w",
-    "start": "npm run scss & npm run watch & npm run cpx & nodemon bin/www",
+    "watch": "watchify src/main.js -o public/js/bundle.js && npm run cpx ",
+    "scss": "scss --watch src/scss:public/css",
+    "start": "nodemon bin/www",
     "db": "mongod"
   },
   "repository": {

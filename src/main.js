@@ -1,14 +1,12 @@
 'use strict'
-global.$ = require('jquery')
-global.jQuery = global.$
+// const $ = require('jquery')
 
-const $gridContainer = require('./grid-container')
-require('./sockets')
-
-
+require('./grid-container')
 const getGrid = require('./to-obtain-grid')
-const renderGrid = require('./render-grids')
+const renderGrid = require('./render-grid')
 
 getGrid({}, (grid) => {
-  renderGrid(grid)
+  renderGrid(grid, function () {
+    require('./events/grid.js')
+  })
 })

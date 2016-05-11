@@ -3,6 +3,9 @@ const fs = require('fs-extra')
 const jsonfile = require('jsonfile')
 const path = require('path')
 const corpsePieces = require('../db').CorpsePiece
+const _ = require('lodash')
+
+const rsp = require('../responses')
 
 class Matrix {
   constructor (name) {
@@ -10,6 +13,8 @@ class Matrix {
     this.dirName = `${gridName}.json`
     this.pathFile = path.join(__dirname, 'matrixDir', this.dirName)
     this.template = []
+    this.grid = null
+    this.usersDriving = []
 
     this.buildGrid((err, grid) => {
       if (err) console.log(err)
@@ -36,6 +41,7 @@ class Matrix {
         // Si los datos en el archivo no se pueden leer, se crea otro
         if (err || !matriz) {
           console.log('no matrix')
+          // busca el numero de piezas en su base de datos
           corpsePieces.find({}, (err, data) => {
             if (err) return cb(err, null)
             let dimension = 3
@@ -51,10 +57,10 @@ class Matrix {
             // Se construye la rejilla
             for (let y = Math.floor(dimension / 2); y >= (dimension / 2) * -1; y--) {
               for (let x = Math.round((dimension / 2) * -1); x < dimension / 2; x++) {
-                color1 = Math.floor(Math.random() * 10);
-                color2 = Math.floor(Math.random() * 10);
-                color3 = Math.floor(Math.random() * 10);
-                this.template.push({'pos': `${x}/${y}`, 'direction': '0', 'id': `rgb(${color3*25}, ${color2*25}, ${color1*25})`})
+                color1 = Math.floor(Math.random() * 10)
+                color2 = Math.floor(Math.random() * 10)
+                color3 = Math.floor(Math.random() * 10)
+                this.template.push({'pos': `${x}/${y}`, 'direction': '0', 'id': `rgb(${color3 * 25}, ${color2 * 25}, ${color1 * 25})`})
               }
             }
 
@@ -88,12 +94,29 @@ class Matrix {
   updateGrid () {
   }
 
-  unLockPiece (piece) {
-    console.log(`this piece was unlocked ${piece.id}`)
+  closeUser (userId, cb) {
+    let indexUser = _.indexOf(this.usersDriving, userId)
+    if (indexUser !== -1) {
+      this.usersDriving.splice(indexUser, 1)
+      cb(null, rsp('200', `user ${userId} has stoped driving`))
+    } else {
+      cb(rsp('404', `user ${userId} do not driving anything`, '404'), null)
+    }
   }
 
-  lockPiece (piece) {
-    console.log(`this piece was locked ${piece.id}`)
+  choosePiece (data, cb) {
+    // data:
+    // piece : id de la pieza
+    // userId : id del socket del usuario
+    let pieceToChoose = data.piece
+    let userId = data.userId
+
+    if (_.indexOf(this.usersDriving, userId) === -1) {
+      this.usersDriving.push(userId)
+      cb(null, rsp('200'))
+    } else {
+      cb(rsp('201', `${userId}, already driving a piece`, '01'))
+    }
   }
 }
 
