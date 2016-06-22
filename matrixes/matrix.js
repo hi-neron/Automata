@@ -44,7 +44,7 @@ class Matrix {
           // busca el numero de piezas en su base de datos
           corpsePieces.find({}, (err, data) => {
             if (err) return cb(err, null)
-            let dimension = 3
+            let dimension = 5
             // Buscamos un numero impar donde entren todas las piezas del
             // cadaver
             while (dimension * dimension / data.length + 1 < 1) {
@@ -60,7 +60,7 @@ class Matrix {
                 color1 = Math.floor(Math.random() * 10)
                 color2 = Math.floor(Math.random() * 10)
                 color3 = Math.floor(Math.random() * 10)
-                this.template.push({'pos': `${x}/${y}`, 'direction': '0', 'id': `rgb(${color3 * 25}, ${color2 * 25}, ${color1 * 25})`})
+                this.template.push({'pos': `${x}/${y}`, 'direction': '0', 'id': `rgb(${color1 * 25}, ${color2 * 25}, ${color3 * 25})`})
               }
             }
 
@@ -108,7 +108,7 @@ class Matrix {
     // data:
     // piece : id de la pieza
     // userId : id del socket del usuario
-    let pieceToChoose = data.piece
+    // let pieceToChoose = data.piece
     let userId = data.userId
 
     if (_.indexOf(this.usersDriving, userId) === -1) {

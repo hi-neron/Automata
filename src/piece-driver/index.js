@@ -3,6 +3,23 @@ const $ = require('jquery')
 
 const $gridContainer = $('#gridContainer')
 const $grid = $gridContainer.find('.grid')
+const $mask = $gridContainer.find('.mask')
+
+function openPiece(close, div) {
+  if (!close){
+    $mask.css({
+      opacity: 0.70,
+      zIndex: 100
+    })
+    div.css({zIndex: 100})
+  } else {
+    $mask.css({
+      opacity: 0,
+      zIndex: -10
+    })
+    div.css({zIndex: 0})
+  }
+}
 
 class PieceToDrive {
   constructor (data) {
@@ -19,13 +36,14 @@ class PieceToDrive {
   visualHandlerOn () {
     this.$handlebar.show('500')
     this.$div.find('.handle').hide('300')
+    openPiece(false, this.$div)
     console.log(`${this.piece} has taken`)
-    console.log(this.$div)
     // this.$div.find('.handlebar').show('fast', function() {
     // });
   }
 
   visualHandleroff () {
+    openPiece(true, this.$div)
     this.$handlebar.hide('500')
     this.$div.find('.handle').show('300')
   }

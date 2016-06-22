@@ -6,6 +6,8 @@ const $gridContainer = require('../grid-container')
 var template = `
 <div class="corpsePiece" style="background-color:{{id}}" id-piece="{{id}}">
   <div class="handle">
+    <div class="left"></div>
+    <div class="right"></div>
   </div>
   <div class="handlebar">
     <a class="closeHandlebar">close</a>
@@ -22,7 +24,7 @@ function renderGrid (grid, cb) {
   let dimension = Math.sqrt(grid.grid.length)
   let $grid = $gridContainer.find('.grid')
   let $blankSpace = $gridContainer.find('.blankSpace')
-  let size = 300
+  let size = 340
   let x = 0
   let y = 0
   let bucle = 0
@@ -30,7 +32,7 @@ function renderGrid (grid, cb) {
   grid.grid.forEach((piece) => {
     let item = template
     .replace(/{{id}}/g, piece.id)
-    .replace('{{pos}}', piece.pos)
+    .replace('{{pos}}', '') // piece.pos
 
     let $item = $(item)
     let $handlebar = $item.find('.handlebar')
@@ -66,8 +68,8 @@ function renderGrid (grid, cb) {
   let wGrid = size * dimension
 
   $blankSpace.css({
-    height: hGrid + size,
-    width: wGrid + size
+    height: hGrid - 40,
+    width: wGrid - 30
   })
 
   $grid.css({

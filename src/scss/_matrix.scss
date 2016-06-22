@@ -1,4 +1,8 @@
 $whiteBone: #FAFAF5;
+$purple: #2B1840;
+$black: #363629;
+$yellow: #FFAA00;
+$blue: #284F9B;
 
 #gridContainer{
   // position: relative;
@@ -8,7 +12,7 @@ $whiteBone: #FAFAF5;
   .scrollBars{
     width: 100%;
     height: 100%;
-    padding-right: 15px;
+    padding-right: 30px;
     //margin-left: -4px;
     padding-bottom: 20px;
     position: relative;
@@ -19,6 +23,7 @@ $whiteBone: #FAFAF5;
     .blankSpace{
       display: inline-block;
       background-color: $whiteBone;
+      position: relative;
 
       .grid{
         // background-color: #F4F4F4;
@@ -26,6 +31,18 @@ $whiteBone: #FAFAF5;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+
+        .mask{
+          $time: 100ms;
+          background-color: $whiteBone;
+          height: 101%;
+          opacity: 0;
+          position: absolute;
+          transition: $time ease-in-out;
+          width: 101%;
+          z-index: -1;
+
+        }
 
         .corpsePiece {
           position: absolute;
@@ -58,17 +75,31 @@ $whiteBone: #FAFAF5;
 
           .handle {
             position: absolute;
-            background-color: #FFF;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
+            width: 70px;
+            height: 70px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: 1s ease-out .1s;
 
-            &:hover{
+            .left {
+              float: left;
+              // background-color: $black;
+              // height: 100%;
+              // width: 30px;
+              border-right: 35px solid $blue;
+              border-top: 35px solid transparent;
+              border-bottom: 35px solid transparent;
+            }
+            .right {
+              float: left;
+              border-left: 35px solid $yellow;
+              border-top: 35px solid transparent;
+              border-bottom: 35px solid transparent;
+            }
+
+            &:hover {
               opacity: 1;
               cursor: pointer;
             }

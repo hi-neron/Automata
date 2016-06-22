@@ -1,7 +1,7 @@
 'use strict'
 
 class Reply {
-  constructor(status, message, error) {
+  constructor (status, message, error) {
     const STATUS_CODES = {
       '200': 'ok',
       '201': 'created',
@@ -22,7 +22,7 @@ class Reply {
     if (STATUS_CODES[status]) {
       this.body = {
         'status': status,
-        'error': error || null,
+        'error': error || ERROR_CODES[status],
         'message': message || STATUS_CODES[status]
       }
     } else {
@@ -35,7 +35,7 @@ class Reply {
   }
 }
 
-function throwReply (status, message, error){
+function throwReply (status, message, error) {
   message = message || null
   let reply = new Reply(status, message, error)
   return reply.body

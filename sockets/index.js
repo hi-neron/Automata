@@ -36,7 +36,7 @@ function io (io) {
     socket.on('disconnect', function () {
       driver.turnOff(function (err, status) {
         if (err) return socket.emit('closed piece', err)
-          socket.emit('closed piece', status)
+        socket.emit('closed piece', status)
       })
       driver = null
       io.emit('user disconnected')

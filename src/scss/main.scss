@@ -1,8 +1,24 @@
+// include font-awesome
+@import "./fa/variables";
+@import "./fa/mixins";
+@import "./fa/path";
+@import "./fa/core";
+@import "./fa/larger";
+@import "./fa/fixed-width";
+@import "./fa/list";
+@import "./fa/bordered-pulled";
+@import "./fa/animated";
+@import "./fa/rotated-flipped";
+@import "./fa/stacked";
+@import "./fa/icons";
+@import "./fa/screen-reader";
+
+// inlcude my files
 @import 'reset';
 @import 'header';
 @import 'matrix';
-// include brand
 
+// include brand colors
 $orange: #FC9E2B;
 $purple: #2B1840;
 $whiteBone: #FAFAF5;

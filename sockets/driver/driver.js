@@ -35,7 +35,7 @@ class Driver {
   }
 
   turnOff (cb) {
-    if (this.piece){
+    if (this.piece) {
       matrix.closeUser(this.userId, function (err, status) {
         if (err) return cb(err, null)
         cb(null, status)

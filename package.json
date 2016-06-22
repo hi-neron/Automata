@@ -7,8 +7,8 @@
     "lint": "standard",
     "test": "npm run lint && tape tests/*-test.js | tap-spec",
     "sync": "browser-sync start --proxy 'localhost:3000' --files 'public'",
-    "cpx": "cpx 'src/*.html' public -w",
-    "watch": "watchify src/main.js -o public/js/bundle.js && npm run cpx ",
+    "cpx": "cpx 'src/**/*.{html,png,jpg,svg,gif,eot,ttf,woff,woff2,otf}' public -w",
+    "watch": "watchify src/main.js -o public/js/bundle.js",
     "scss": "scss --watch src/scss:public/css",
     "start": "nodemon bin/www",
     "db": "mongod"

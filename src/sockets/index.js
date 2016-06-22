@@ -40,17 +40,17 @@ socket.on('choosed piece', function (data) {
 // devuelve error si no hay alguna
 // desactiva el manejador visual
 socket.on('closed piece', function (response) {
-  if (response.status == '200'){
+  if (response.status === '200') {
     pieceDriving.close()
   } else {
     console.log(response)
   }
 })
 
-socket.on('rotate', function (){
+socket.on('rotate', function () {
 })
 
-socket.on('move', function (){
+socket.on('move', function () {
 })
 
 module.exports = drive
