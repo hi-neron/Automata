@@ -5,7 +5,7 @@ const path = require('path')
 const corpsePieces = require('../db').CorpsePiece
 const _ = require('lodash')
 
-const rsp = require('../responses')
+const rsp = require('../responses') // traquea los errores y las respuestas
 
 class Matrix {
   constructor (name) {
@@ -47,22 +47,27 @@ class Matrix {
             let dimension = 5
             // Buscamos un numero impar donde entren todas las piezas del
             // cadaver
+            console.log(data.length + ' hello')
+
             while (dimension * dimension / data.length + 1 < 1) {
               dimension = dimension + 2
             }
 
-            let color1 = 0
-            let color2 = 0
-            let color3 = 0
+            // let color1 = 0
+            // let color2 = 0
+            // let color3 = 0
+            //     color1 = Math.floor(Math.random() * 10)
+            //     color2 = Math.floor(Math.random() * 10)
+            //     color3 = Math.floor(Math.random() * 10)
+
             // Se construye la rejilla
             for (let y = Math.floor(dimension / 2); y >= (dimension / 2) * -1; y--) {
               for (let x = Math.round((dimension / 2) * -1); x < dimension / 2; x++) {
-                color1 = Math.floor(Math.random() * 10)
-                color2 = Math.floor(Math.random() * 10)
-                color3 = Math.floor(Math.random() * 10)
-                this.template.push({'pos': `${x}/${y}`, 'direction': '0', 'id': `rgb(${color1 * 25}, ${color2 * 25}, ${color3 * 25})`})
+                // this.template.push({'pos': `${x}/${y}`, 'direction': '0', 'id': `rgb(${color1 * 25}, ${color2 * 25}, ${color3 * 25})`})
               }
             }
+
+
 
             // Se crear el archivo backup
             this.makeFile((err, grid) => {
@@ -120,7 +125,7 @@ class Matrix {
   }
 }
 
-let mainMatrix = new Matrix()
+let mainMatrix = new Matrix() // it init main matrix
 
 module.exports = {
   'mainMatrix': mainMatrix,

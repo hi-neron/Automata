@@ -2,12 +2,12 @@
 
 const http = require('http')
 const app = require('../app.js')
+const chalk = require('chalk')
 
 const port = process.env.PORT || 3000
 const server = http.createServer(app)
 
 const name = 'Automata'
-const chalk = require('chalk')
 
 
 server.listen(port)

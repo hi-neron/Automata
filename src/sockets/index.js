@@ -3,7 +3,7 @@
 const io = require('socket.io-client')
 const socket = io('http://localhost:3000')
 
-const PieceToDrive = require('../piece-driver')
+const PieceMovementEngine = require('../piece-movement-engine')
 var pieceDriving
 // pieceActions:
 // $grid : objeto DOM que contiene todas las piezas
@@ -33,7 +33,7 @@ socket.on('choosed piece', function (data) {
   // user: name del usuario
   // }
   if (data.error) return console.log(data)
-  pieceDriving = new PieceToDrive(data)
+  pieceDriving = new PieceMovementEngine(data)
 })
 
 // Cierra la pieza que se esta manejando
